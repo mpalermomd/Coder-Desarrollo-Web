@@ -1,0 +1,178 @@
+
+  
+
+
+body {
+    font-family: 'Nunito Sans', sans-serif !important;
+    background-color: rgba(226, 78, 10, 0.089) !important;
+}
+
+
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+header img {
+    max-width: 100px;
+    margin-right: 10px;
+}
+
+h1 {
+    margin: 0;
+}
+
+.colo-rnav {
+    
+    background-color: #333;
+    padding: 10px;
+}
+
+
+
+#carousel {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#carousel img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+}
+
+.slick-prev,
+.slick-next {
+    position: absolute;
+    top: 50%;
+    font-size: 30px;
+    color: #fff;
+    background-color: #555;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    padding: 10px;
+    z-index: 1; /* Asegura que los botones estén sobre las imágenes */
+}
+
+.slick-prev {
+    left: 10px;
+    transform: translateY(-50%);
+}
+
+.slick-next {
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+
+.slick-prev:hover,
+.slick-next:hover {
+    background-color: #777;
+    transform: scale(1.1);
+}
+
+#gallery {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.gallery-item {
+    width: 100%;
+    max-width: 400px;
+    margin: 10px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    
+}
+
+.social-icons a {
+    margin: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.social-icons i {
+    font-size: 30px;
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+    
+}
+
+.whatsapp-button {
+    width: 5%;
+    
+}
+
+#mensaje {
+     padding: 50px;
+
+
+
+}
+
+.imagen-diseño {
+    padding-bottom: 10%;
+    margin-top: 10%;
+}
+
+.pdf {
+    align-items: center;
+    height: 678px;
+    width: 100%;
+
+   
+}
+
+
+/*  */
+
+
+@media screen and (max-width: 768px) {
+    #carousel {
+        width: 100%;
+    }
+
+    .slick-prev,
+    .slick-next {
+        font-size: 20px;
+        padding: 5px;
+    }
+
+    #gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gallery-item {
+        width: 100%;
+    }
+}
+
