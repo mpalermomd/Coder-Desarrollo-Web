@@ -27,10 +27,10 @@ h1 {
     margin: 0;
 }
 
-.colo-rnav {
+nav {
     
-    background-color: #333;
-    padding: 10px;
+    background-color: #333 !important;
+    padding: 10px !important;
 }
 
 
