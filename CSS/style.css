@@ -1,0 +1,162 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap");
+body {
+  font-family: "Nunito Sans", sans-serif !important;
+  background-color: rgba(226, 78, 10, 0.089) !important;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+header img {
+  max-width: 100px;
+  margin-right: 10px;
+}
+header h1 {
+  margin: 0;
+}
+
+nav {
+  background-color: #333 !important;
+  padding: 10px !important;
+}
+
+#carousel {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+#carousel img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+#carousel .slick-prev,
+#carousel .slick-next {
+  position: absolute;
+  top: 50%;
+  font-size: 30px;
+  color: #fff;
+  background-color: #555;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 10px;
+  z-index: 1; /* Asegura que los botones estén sobre las imágenes */
+}
+#carousel .slick-prev.slick-prev,
+#carousel .slick-next.slick-prev {
+  left: 10px;
+  transform: translateY(-50%);
+}
+#carousel .slick-prev.slick-next,
+#carousel .slick-next.slick-next {
+  right: 10px;
+  transform: translateY(-50%);
+}
+#carousel .slick-prev:hover,
+#carousel .slick-next:hover {
+  background-color: #777;
+  transform: scale(1.1);
+}
+
+#gallery {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+#gallery .gallery-item {
+  width: 100%;
+  max-width: 400px;
+  margin: 10px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+#gallery .gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.social-icons a {
+  margin: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+}
+.social-icons a i {
+  font-size: 30px;
+  margin-right: 5px; /* Espacio entre el icono y el texto */
+}
+
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 30px;
+  line-height: 60px;
+  transition: background-color 0.3s;
+}
+.whatsapp-button:hover {
+  background-color: #128c7e;
+}
+
+#mensaje {
+  padding: 50px;
+}
+
+.imagen-diseño {
+  padding-bottom: 10%;
+  margin-top: 10%;
+}
+
+.pdf {
+  align-items: center;
+  height: 678px;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  #carousel {
+    width: 100%;
+  }
+  .slick-prev,
+  .slick-next {
+    font-size: 20px;
+    padding: 5px;
+  }
+  #gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+  #gallery .gallery-item {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
