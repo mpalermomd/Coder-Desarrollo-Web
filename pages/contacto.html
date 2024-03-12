@@ -57,27 +57,28 @@
       </div>
       
         <!-- Formulario de contacto -->
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInputDisabled" placeholder="name@example.com" disabled>
-            <label for="floatingInputDisabled">Email address</label>
+        <form>
+          <div class="form-group mb-3 mt-3">
+            <label for="exampleFormControlInput1">Correo electrónico</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
           </div>
-          <div class="form-floating mb-3">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextareaDisabled" disabled></textarea>
-            <label for="floatingTextareaDisabled">Comments</label>
-          </div>
-          <div class="form-floating mb-3">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2Disabled" style="height: 100px" disabled>Disabled textarea with some text inside</textarea>
-            <label for="floatingTextarea2Disabled">Comments</label>
-          </div>
-          <div class="form-floating">
-            <select class="form-select" id="floatingSelectDisabled" aria-label="Floating label disabled select example" disabled>
-              <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Elija el motivo del contactó</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>Presupuesto</option>
+              <option>Recomendación</option>
+              <option>Consulta</option>
+              <option>Otros</option>
             </select>
-            <label for="floatingSelectDisabled">Works with selects</label>
           </div>
+          <div class="form-group mb-3 mt-3">
+            <label for="exampleFormControlTextarea1">Área de redacción</label>
+            <textarea class="form-control form-floating" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+        </form>
+            <div class="form-group mb-3 mt-3">
+              <button type="submit" class="btn btn-primary"id="floatingSelectDisabled">Submit</button>
+            </div>
 
         <!-- Botón de WhatsApp -->
         <div class="mx-3 mt-3 mb-3 col-12 col-md-12">
