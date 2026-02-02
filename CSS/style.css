@@ -261,3 +261,64 @@ footer {
   max-height: 100%;
   object-fit: contain;
 }
+
+
+/* ===== Galería PRO ===== */
+
+.galeria-pro {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.galeria-pro .item {
+  margin-bottom: 80px;
+}
+
+.galeria-pro h4 {
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.img-pro {
+  width: 100%;
+  height: 480px;
+  background: #f8f9fa;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+  transition: all .4s ease;
+  cursor: pointer;
+}
+
+.img-pro img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform .4s ease;
+}
+
+.img-pro:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.18);
+}
+
+.img-pro:hover img {
+  transform: scale(1.08);
+}
+
+/* Modal */
+
+.modal-img {
+  max-width: 95vw;
+  max-height: 85vh;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .img-pro {
+    height: 300px;
+  }
+}

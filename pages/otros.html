@@ -11,6 +11,21 @@
     <link rel="icon" type="image/png" sizes="32x32" href="IMG//Logo.png">
     <link rel="apple-touch-icon" href="IMG//Logo.png">
 </head>
+
+<div class="modal fade" id="imgModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content bg-dark">
+      <div class="modal-body text-center">
+        <img id="modalImg" class="modal-img">
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function verImg(el) {
+    document.getElementById("modalImg").src = el.querySelector("img").src;
+  }
+</script>
 <body>
     <header>
       <img class="d-none d-md-block jello-horizontal" src="../IMG/Logo Multimedial.png" alt="Logo de Diseño Multimedial">
@@ -83,121 +98,38 @@ Desde la idea inicial hasta la pieza final, cuidamos cada detalle para obtener r
 A continuación, una muestra de algunos de nuestros trabajos.</p>
 
  
-<div class="container my-5">
+<div class="container my-5 galeria-pro">
 
-  <div class="d-flex justify-content-center my-4">
-    <div style="width: 80px; height: 2px; background-color: #ccc;"></div>
+  <div class="item text-center">
+    <h4>Maceta de 4 con diseño escalonado - LED Opcional</h4>
+    <div class="img-pro" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="verImg(this)">
+      <img src="../IMG/3D/Maceta con led.jpg" alt="Maceta con LED">
+    </div>
   </div>
 
-  <div class="row g-5">
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">Maceta de 4 con diseño escalonado - LED Opcional</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/Maceta con led.jpg" class="img-fluid zoom-img" alt="Maceta con LED">
-      </div>
+  <div class="item text-center">
+    <h4>Organizador Moderno de Té, Dispensador de Té</h4>
+    <div class="img-pro" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="verImg(this)">
+      <img src="../IMG/3D/orga de te.webp" alt="Organizador de té">
     </div>
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">Organizador Moderno de Té, Dispensador de Té</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/orga de te.webp" class="img-fluid zoom-img" alt="Organizador de té">
-      </div>
-    </div>
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">Organización modular de cocina, lavavajillas con desagüe</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/Porta esponja con base chica.webp" class="img-fluid zoom-img" alt="Porta esponja chico">
-      </div>
-    </div>
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">Porta esponja con base grande</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/Porta esponja con base grande.webp" class="img-fluid zoom-img" alt="Porta esponja grande">
-      </div>
-    </div>
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">Dispensador de palillos</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/0990bde7d5e112fa.webp" class="img-fluid zoom-img" alt="Dispensador de palillos">
-      </div>
-    </div>
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">PopTop Lite</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/Tapa lata.webp" class="img-fluid zoom-img" alt="PopTop Lite">
-      </div>
-    </div>
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">FlowWash Bowl – Lavador Inteligente de Arroz, Frutas y Verduras</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/limpia fruta.gif" class="img-fluid zoom-img" alt="FlowWash Bowl">
-      </div>
-    </div>
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">Desert Eagle Funcional | Dispara & Recarga | [JUGUETE]</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/Pistolawebp.webp" class="img-fluid zoom-img" alt="Pistola juguete">
-      </div>
-    </div>
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">Dispensador de palillos con forma de cactus</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/cactus.webp" class="img-fluid zoom-img" alt="Palillero cactus">
-      </div>
-    </div>
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">Perchero autocerrante</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/2025-12-20_7e9c225d841288.jpg" class="img-fluid zoom-img" alt="Perchero autocerrante">
-      </div>
-    </div>
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">Clip para bolsas abiertas</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/A910uj0ss_l8isz9_qpc.png" class="img-fluid zoom-img" alt="Clip para bolsas">
-      </div>
-    </div>
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">Portarrollos</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/1.jpg" class="img-fluid zoom-img" alt="Portarrollos">
-      </div>
-    </div>
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">Stillwater Planters x4 con Insertos de Autorriego</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/3. 160mm.491.jpg" class="img-fluid zoom-img" alt="Stillwater Planters">
-      </div>
-    </div>
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">Stranger Things - Soporte Demogorgon</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/okładka 1.jpg" class="img-fluid zoom-img" alt="Soporte Demogorgon">
-      </div>
-    </div>
-
-    <div class="col-md-6 text-center">
-      <h4 class="mb-3">Papel higiénico - porta pañuelos</h4>
-      <div class="ratio">
-        <img src="../IMG/3D/DSC08745.JPG" class="img-fluid zoom-img" alt="Porta pañuelos">
-      </div>
-    </div>
-
   </div>
+
+  <div class="item text-center">
+    <h4>Organización modular de cocina, lavavajillas con desagüe</h4>
+    <div class="img-pro" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="verImg(this)">
+      <img src="../IMG/3D/Porta esponja con base chica.webp" alt="Porta esponja chico">
+    </div>
+  </div>
+
+  <div class="item text-center">
+    <h4>Porta esponja con base grande</h4>
+    <div class="img-pro" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="verImg(this)">
+      <img src="../IMG/3D/Porta esponja con base grande.webp" alt="Porta esponja grande">
+    </div>
+  </div>
+
 </div>
+
 
 
   <!-- <div class="ratio ratio-16x9">
