@@ -243,3 +243,21 @@ footer {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+
+/* ===== Galería imágenes tamaño uniforme PRO ===== */
+
+.ratio {
+  height: 280px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ratio img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
