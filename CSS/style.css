@@ -322,3 +322,37 @@ footer {
     height: 300px;
   }
 }
+
+
+.galeria-pro {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.galeria-pro .item {
+  margin-bottom: 80px;
+}
+
+.img-pro {
+  width: 100%;
+  height: 480px;
+  background: #f8f9fa;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+  transition: all .4s ease;
+  cursor: pointer;
+}
+
+.img-pro img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .img-pro { height: 300px; }
+}
