@@ -14,7 +14,7 @@ header {
   align-items: center;
 }
 header img {
-  max-width: 200px;
+  max-width: 00px;
   margin-right: 10px;
 }
 header h1 {
@@ -28,18 +28,6 @@ nav {
 
 .nav-link {
     color: #F5F0E8 !important;
-}
-
-.nav-tabs .nav-link {
-  border: none;
-  color: #F5F0E8;
-  font-weight: 500;
-}
-
-.nav-tabs .nav-link.active {
-  background-color: #F5F0E8;
-  color: white;
-  border-radius: 8px;
 }
 
 #carousel {
