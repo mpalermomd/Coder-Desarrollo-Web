@@ -52,35 +52,19 @@ function verImg(el) {
 
 <!-- TABS -->
 <ul class="nav nav-tabs mt-4">
+ <li class="nav-item">
+    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab2">Poténa</button>
+  </li>
+ 
   <li class="nav-item">
     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab1">Pringles</button>
   </li>
-  <li class="nav-item">
-    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab2">Poténa</button>
-  </li>
+  
 </ul>
 
 <div class="tab-content">
 
 <!-- ================= TAB 1 ================= -->
-<div class="tab-pane fade" id="tab2">
-
-<div class="section-content mx-3 mt-3">
-    <h2>Poténa</h2>
-    <h4>El pote que se rellena</h4>
-</div>
-
-
-<div class="container my-5 galeria-pro">
-
-   <div class="item text-center">
-    <h4>PDF Potena </h4>
-    <div class="img-pro" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="verImg(this)">
-      <iframe class="img-pro"src="../IMG/Papas/Potena_Presentacion.pdf" title="PDF" allowfullscreen></iframe>
-    </div>
-  </div>
-
-<!-- ================= TAB 2 (COPIA) ================= -->
 <div class="tab-pane fade show active" id="tab1">
 
 <div class="section-content mx-3 mt-3">
@@ -142,6 +126,24 @@ function verImg(el) {
 </div>
 
 </div>
+
+<!-- ================= TAB 2 (COPIA) ================= -->
+<div class="tab-pane fade" id="tab2">
+
+<div class="section-content mx-3 mt-3">
+    <h2>Poténa</h2>
+    <h4>El pote que se rellena</h4>
+</div>
+
+
+<div class="container my-5 galeria-pro">
+
+   <div class="item text-center">
+    <h4>PDF Potena </h4>
+    <div class="img-pro" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="verImg(this)">
+      <iframe class="img-pro"src="../IMG/Papas/Potena_Presentacion.pdf" title="PDF" allowfullscreen></iframe>
+    </div>
+  </div>
 
  <!--  <div class="item text-center">
     <h4>Jarrón San Valentín</h4>
