@@ -6,7 +6,7 @@ body {
 }
 
 header {
-  background-color: #e76006;
+  background-color:#1C1C1A ;
   color: #fff;
   text-align: center;
   padding: 20px;
@@ -14,7 +14,7 @@ header {
   align-items: center;
 }
 header img {
-  max-width: 100px;
+  max-width: 300px;
   margin-right: 10px;
 }
 header h1 {
@@ -22,7 +22,7 @@ header h1 {
 }
 
 nav {
-  background-color: #e76006 !important;
+  background-color: #1C1C1A !important;
   padding: 10px !important;
 }
 
