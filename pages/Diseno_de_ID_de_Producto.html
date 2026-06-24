@@ -8,57 +8,83 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../CSS/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script>
-  function observarItems() {
-    document.querySelectorAll('.item:not(.observado)').forEach(el => {
-      el.classList.add('observado');
-      observer.observe(el);
-    });
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  // Observar items del tab activo al cargar
-  document.addEventListener('DOMContentLoaded', observarItems);
-
-  // Observar items de tabs al cambiar de tab
-  document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
-    tab.addEventListener('shown.bs.tab', observarItems);
-  });
-</script>
-
     <link rel="icon" href="../IMG/Logo.png">
+
+    <style>
+      /* ===== TIPOGRAFÍAS ===== */
+      h1, h2, h3, h4, h5, h6,
+      .nav-tabs .nav-link,
+      .section-content h2,
+      .section-content h4 {
+        font-family: Georgia, 'Times New Roman', serif !important;
+      }
+
+      body, p, span, a, li, td, th, label, input, textarea, button {
+        font-family: Calibri, 'Segoe UI', sans-serif !important;
+      }
+
+      /* ===== SCROLL REVEAL ===== */
+      .tab-pane.show .item,
+      .tab-pane.active .item {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .item.visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+
+      /* ===== MODAL ===== */
+      .modal-img {
+        max-width: 95vw;
+        max-height: 80vh;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .modal-content.bg-dark .btn-close-white {
+        filter: invert(1);
+      }
+
+      /* Ícono de play sobre items de video */
+      .item-video .img-pro {
+        position: relative;
+      }
+
+      .item-video .play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3rem;
+        color: rgba(255,255,255,0.85);
+        pointer-events: none;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      }
+    </style>
 </head>
 
 <body>
 
-<!-- MODAL -->
+<!-- MODAL MEJORADO -->
 <div class="modal fade" id="imgModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content bg-dark">
-      <div class="modal-body text-center">
-        <img id="modalImg" class="modal-img">
+      <div class="modal-header border-0 pb-0">
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center p-2" id="modalBody">
+        <!-- contenido dinámico -->
       </div>
     </div>
   </div>
 </div>
 
-<script>
-function verImg(el) {
-  document.getElementById("modalImg").src = el.querySelector("img").src;
-}
-</script>
-
 <header>
   <img class="d-none d-md-block jello-horizontal" src="IMG/Potena/3D potena@4x.png">
-  
 </header>
 
 <nav class="navbar navbar-expand-lg">
@@ -77,161 +103,245 @@ function verImg(el) {
 
 <!-- TABS -->
 <ul class="nav nav-tabs mt-4">
- <li class="nav-item">
+  <li class="nav-item">
     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab2">Poténa</button>
   </li>
- 
   <li class="nav-item">
-    <button class="nav-link " data-bs-toggle="tab" data-bs-target="#tab1">Pringles</button>
+    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab1">Pringles</button>
   </li>
-  
 </ul>
 
 <div class="tab-content">
 
-<!-- ================= TAB 1 ================= -->
+<!-- ================= TAB POTÉNA ================= -->
 <div class="tab-pane fade show active" id="tab2">
 
-<div class="section-content mx-3 mt-3">
+  <div class="section-content mx-3 mt-3">
     <h2>Poténa</h2>
     <h4>El pote que se rellena</h4>
+  </div>
+
+  <div class="container my-5 galeria-pro">
+
+    <!-- PDF -->
+    <div class="item text-center">
+      <h4>PDF Potena</h4>
+      <div class="img-pro" onclick="abrirModal('pdf', '../IMG/Papas/Potena_Presentacion.pdf')">
+        <iframe class="img-pro" src="../IMG/Papas/Potena_Presentacion.pdf" title="PDF" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- Packaging diseño -->
+    <div class="item text-center">
+      <h4>Packaging diseño</h4>
+      <div class="img-pro" onclick="abrirModal('img', 'IMG/Potena/3D potena@4x.png')">
+        <img src="IMG/Potena/3D potena@4x.png">
+      </div>
+    </div>
+
+    <!-- RA Effects -->
+    <div class="item text-center item-video">
+      <h4>RA-Effects House-8thWall</h4>
+      <div class="img-pro" onclick="abrirModal('video', 'URL_DEL_VIDEO_AQUI')">
+        <img src="IMG/Potena/3D potena@4x.png">
+        <span class="play-icon"><i class="fas fa-play-circle"></i></span>
+      </div>
+    </div>
+
+    <!-- VR web -->
+    <div class="item text-center item-video">
+      <h4>VR-web Kuula-youtube</h4>
+      <div class="img-pro" onclick="abrirModal('video', 'URL_DEL_VIDEO_AQUI')">
+        <img src="IMG/Potena/3D potena@4x.png">
+        <span class="play-icon"><i class="fas fa-play-circle"></i></span>
+      </div>
+    </div>
+
+    <!-- Maqueta real -->
+    <div class="item text-center">
+      <h4>Maqueta real (impresión 3D)</h4>
+      <div class="img-pro" onclick="abrirModal('galeria', ['IMG/Potena/3D potena@4x.png'])">
+        <img src="IMG/Potena/3D potena@4x.png">
+      </div>
+    </div>
+
+    <!-- VideoTurnaround -->
+    <div class="item text-center item-video">
+      <h4>VideoTurnaround 8-3D interactivo</h4>
+      <div class="img-pro" onclick="abrirModal('video', 'URL_DEL_VIDEO_AQUI')">
+        <img src="IMG/Potena/3D potena@4x.png">
+        <span class="play-icon"><i class="fas fa-play-circle"></i></span>
+      </div>
+    </div>
+
+    <!-- Mockup renders -->
+    <div class="item text-center">
+      <h4>Mockup → renders</h4>
+      <div class="img-pro" onclick="abrirModal('galeria', ['IMG/Potena/3D potena@4x.png'])">
+        <img src="IMG/Potena/3D potena@4x.png">
+      </div>
+    </div>
+
+  </div>
 </div>
 
-
-<div class="container my-5 galeria-pro">
-
-   <div class="item text-center">
-    <h4>PDF Potena </h4>
-    <div class="img-pro" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="verImg(this)">
-      <iframe class="img-pro"src="../IMG/Papas/Potena_Presentacion.pdf" title="PDF" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <div class="item text-center">
-    <h4>Packaging diseño</h4>
-    <div class="img-pro" data-bs-toggle="modal" onclick="verImg(this)" data-bs-target="#imgModal">
-      <img src="IMG/Potena/3D potena@4x.png">
-    </div>
-  </div>
-
-   <div class="item text-center">
-    <h4>RA-Effects House-8thWall</h4>
-    <div class="img-pro" data-bs-toggle="modal" onclick="verImg(this)" data-bs-target="#imgModal">
-      <img src="IMG/Potena/3D potena@4x.png">
-    </div>
-  </div>
-
-   <div class="item text-center">
-    <h4>VR-web Kuula-youtube</h4>
-    <div class="img-pro" data-bs-toggle="modal" onclick="verImg(this)" data-bs-target="#imgModal">
-      <img src="IMG/Potena/3D potena@4x.png">
-    </div>
-  </div>
-
-   <div class="item text-center">
-    <h4>Maqueta real (impresión 3D)</h4>
-    <div class="img-pro" data-bs-toggle="modal" onclick="verImg(this)" data-bs-target="#imgModal">
-      <img src="IMG/Potena/3D potena@4x.png">
-    </div>
-  </div>
-
-   <div class="item text-center">
-    <h4>VideoTurnaround 8-3D interactivo</h4>
-    <div class="img-pro" data-bs-toggle="modal" onclick="verImg(this)" data-bs-target="#imgModal">
-      <img src="IMG/Potena/3D potena@4x.png">
-    </div>
-  </div>
-
-   <div class="item text-center">
-    <h4>Mockup ->renders</h4>
-    <div class="img-pro" data-bs-toggle="modal" onclick="verImg(this)" data-bs-target="#imgModal">
-      <img src="IMG/Potena/3D potena@4x.png">
-    </div>
-  </div>
-
-</div>
-
-</div>
-
-<!-- ================= TAB 2 (COPIA) ================= -->
+<!-- ================= TAB PRINGLES ================= -->
 <div class="tab-pane fade" id="tab1">
 
-
-
-
-
-<div class="section-content mx-3 mt-3">
-    <h2>Diseño 3D y Video </h2>
-    
-</div>
-
-
-
-<div class="container my-5 galeria-pro">
-
-  <div class="item text-center">
-    <h4>Video rotando lata</h4>
-    <div class="img-pro" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="verImg(this)">
-      <iframe class="img-pro"src="https://www.youtube.com/embed/4J1aWlHoCyo?si=kEoYVqin5VXrOMKe" title="YouTube video" allowfullscreen></iframe>
-    </div>
+  <div class="section-content mx-3 mt-3">
+    <h2>Diseño 3D y Video</h2>
   </div>
 
-  <div class="item text-center">
-    <h4>Render</h4>
-    <div class="img-pro" data-bs-toggle="modal" onclick="verImg(this)" data-bs-target="#imgModal">
-      <img src="../IMG/Papas/untitl ed.png">
-    </div>
-    <div class="img-pro" data-bs-toggle="modal" onclick="verImg(this)" data-bs-target="#imgModal">
-      <img src="../IMG/Papas/u ntitl ed.png">
-    </div>
-  </div>
-   <div class="item text-center">
-    <h4>QR papas en la cara</h4>
-    <div class="img-pro" data-bs-toggle="modal" onclick="verImg(this)" data-bs-target="#imgModal">
-      <img src="../IMG/Papas/QR papas cara.png">
-    </div>
-  </div>
+  <div class="container my-5 galeria-pro">
 
+    <!-- Video rotando lata -->
+    <div class="item text-center item-video">
+      <h4>Video rotando lata</h4>
+      <div class="img-pro" onclick="abrirModal('video', 'https://www.youtube.com/embed/4J1aWlHoCyo?si=kEoYVqin5VXrOMKe')">
+        <iframe class="img-pro" src="https://www.youtube.com/embed/4J1aWlHoCyo?si=kEoYVqin5VXrOMKe" title="YouTube video" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- Render -->
     <div class="item text-center">
-    <h4>QR papas 360</h4>
-    <div class="img-pro" data-bs-toggle="modal" onclick="verImg(this)" data-bs-target="#imgModal">
-      <img src="../IMG/Papas/QR papas piso.png">
+      <h4>Render</h4>
+      <div class="img-pro" onclick="abrirModal('galeria', ['../IMG/Papas/untitl ed.png', '../IMG/Papas/u ntitl ed.png'])">
+        <img src="../IMG/Papas/untitl ed.png">
+      </div>
     </div>
+
+    <!-- QR papas en la cara -->
+    <div class="item text-center">
+      <h4>QR papas en la cara</h4>
+      <div class="img-pro" onclick="abrirModal('img', '../IMG/Papas/QR papas cara.png')">
+        <img src="../IMG/Papas/QR papas cara.png">
+      </div>
+    </div>
+
+    <!-- QR papas 360 -->
+    <div class="item text-center">
+      <h4>QR papas 360</h4>
+      <div class="img-pro" onclick="abrirModal('img', '../IMG/Papas/QR papas piso.png')">
+        <img src="../IMG/Papas/QR papas piso.png">
+      </div>
+    </div>
+
+    <!-- TikTok 1 -->
+    <div class="item text-center">
+      <h4>Video TikTok</h4>
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@user80306348393195/video/7637338510977928469" data-video-id="7637338510977928469" style="max-width: 605px;min-width: 325px;">
+        <section>
+          <a target="_blank" title="@user80306348393195" href="https://www.tiktok.com/@user80306348393195?refer=embed">@user80306348393195</a>
+          <a target="_blank" title="♬ เสียงต้นฉบับ - MAY PINK" href="https://www.tiktok.com/music/เสียงต้นฉบับ-MAY-PINK-7561398092084366101?refer=embed">♬ เสียงต้นฉบับ - MAY PINK</a>
+        </section>
+      </blockquote>
+    </div>
+
+    <!-- TikTok 2 -->
+    <div class="item text-center">
+      <h4>Video TikTok</h4>
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@johanaayala528/video/7637338482964466962" data-video-id="7637338482964466962" style="max-width: 605px;min-width: 325px;">
+        <section>
+          <a target="_blank" title="@johanaayala528" href="https://www.tiktok.com/@johanaayala528?refer=embed">@johanaayala528</a>
+          <a target="_blank" title="♬ sonido original - valery✅" href="https://www.tiktok.com/music/sonido-original-7614972882338941697?refer=embed">♬ sonido original - valery✅</a>
+        </section>
+      </blockquote>
+    </div>
+
+    <!-- TikTok 3 -->
+    <div class="item text-center">
+      <h4>Video TikTok</h4>
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/7637887637000408328" data-video-id="7637887637000408328" style="max-width: 605px;min-width: 325px;">
+        <section>
+          <a target="_blank" title="@mariano.palermo.ina" href="https://www.tiktok.com/@mariano.palermo.ina?refer=embed">@mariano.palermo.ina</a>
+          <a target="_blank" title="♬ original sound - gentle motif" href="https://www.tiktok.com/music/original-sound-7593689759672339218?refer=embed">♬ original sound - gentle motif</a>
+        </section>
+      </blockquote>
+    </div>
+
+    <!-- Pringles 360 VR -->
+    <div class="item text-center">
+      <h4>Pringles 360 VR</h4>
+      <script src="https://static.kuula.io/embed.js" data-kuula="https://kuula.co/share/LvgvN?logo=1&info=1&fs=1&vr=0&zoom=1&thumbs=1&inst=es" data-width="100%" data-height="640px"></script>
+    </div>
+
   </div>
-
-  <div class="item text-center">
-    <h4>Video rotando lata</h4>
-    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@user80306348393195/video/7637338510977928469" data-video-id="7637338510977928469" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@user80306348393195" href="https://www.tiktok.com/@user80306348393195?refer=embed">@user80306348393195</a> <p></p> <a target="_blank" title="♬ เสียงต้นฉบับ  - MAY PINK" href="https://www.tiktok.com/music/เสียงต้นฉบับ-MAY-PINK-7561398092084366101?refer=embed">♬ เสียงต้นฉบับ  - MAY PINK</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
-  </div>
-  <div class="item text-center">
-    <h4>Video rotando lata</h4>
-    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@johanaayala528/video/7637338482964466962" data-video-id="7637338482964466962" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@johanaayala528" href="https://www.tiktok.com/@johanaayala528?refer=embed">@johanaayala528</a> <p></p> <a target="_blank" title="♬ sonido original - valery✅" href="https://www.tiktok.com/music/sonido-original-7614972882338941697?refer=embed">♬ sonido original - valery✅</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
-  </div>
-
-  <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/7637887637000408328" data-video-id="7637887637000408328" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@mariano.palermo.ina" href="https://www.tiktok.com/@mariano.palermo.ina?refer=embed">@mariano.palermo.ina</a> <p></p> <a target="_blank" title="♬ original sound - gentle motif" href="https://www.tiktok.com/music/original-sound-7593689759672339218?refer=embed">♬ original sound - gentle motif</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
-
-<div class="item text-center">
-    <h4>Pringles 360 VR</h4>
-
-    <script src="https://static.kuula.io/embed.js" data-kuula="https://kuula.co/share/LvgvN?logo=1&info=1&fs=1&vr=0&zoom=1&thumbs=1&inst=es" data-width="100%" data-height="640px"></script>
-  </div>
-
-</div>
 </div>
 
 </div> <!-- cierre tab-content -->
-
-</div>
+</div> <!-- cierre container -->
 
 <footer>
-    <div class="social-icons">
-        <a href="#"><img src="/IMG/🦆 icon _rounded facebook_.svg" alt="Facebook" width="40" height="40"></a>
-        <a href="#"><img src="/IMG/🦆 icon _rounded twitterbird_.svg" alt="Twitter" width="40" height="40"></a>
-        <a href="#"><img src="/IMG/🦆 icon _rounded instagram_.svg" alt="Instagram" width="40" height="40"></a>
-    </div>
+  <div class="social-icons">
+    <a href="#"><img src="/IMG/🦆 icon _rounded facebook_.svg" alt="Facebook" width="40" height="40"></a>
+    <a href="#"><img src="/IMG/🦆 icon _rounded twitterbird_.svg" alt="Twitter" width="40" height="40"></a>
+    <a href="#"><img src="/IMG/🦆 icon _rounded instagram_.svg" alt="Instagram" width="40" height="40"></a>
+  </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script async src="https://www.tiktok.com/embed.js"></script>
+
+<script>
+  /* ===== MODAL ===== */
+  function abrirModal(tipo, src) {
+    const body = document.getElementById('modalBody');
+    body.innerHTML = '';
+
+    if (tipo === 'img') {
+      body.innerHTML = `<img src="${src}" class="modal-img">`;
+
+    } else if (tipo === 'video') {
+      body.innerHTML = `
+        <div class="ratio ratio-16x9">
+          <iframe src="${src}" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+        </div>`;
+
+    } else if (tipo === 'pdf') {
+      body.innerHTML = `
+        <div class="ratio" style="--bs-aspect-ratio: 75%;">
+          <iframe src="${src}" allowfullscreen></iframe>
+        </div>`;
+
+    } else if (tipo === 'galeria') {
+      // src es un array de rutas
+      body.innerHTML = src.map(url =>
+        `<img src="${url}" class="modal-img mb-3">`
+      ).join('');
+    }
+
+    const modal = new bootstrap.Modal(document.getElementById('imgModal'));
+    modal.show();
+  }
+
+  // Al cerrar el modal limpiar contenido (detiene videos)
+  document.getElementById('imgModal').addEventListener('hidden.bs.modal', () => {
+    document.getElementById('modalBody').innerHTML = '';
+  });
+
+  /* ===== SCROLL REVEAL ===== */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  function observarItems() {
+    document.querySelectorAll('.item:not(.observado)').forEach(el => {
+      el.classList.add('observado');
+      observer.observe(el);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', observarItems);
+
+  document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
+    tab.addEventListener('shown.bs.tab', observarItems);
+  });
+</script>
+
 </body>
 </html>
