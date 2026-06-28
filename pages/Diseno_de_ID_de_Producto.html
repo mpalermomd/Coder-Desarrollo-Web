@@ -65,6 +65,8 @@
         text-shadow: 0 2px 8px rgba(0,0,0,0.5);
       }
     </style>
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.98/build/spline-viewer.js"></script>
 </head>
 
 <body>
@@ -151,8 +153,8 @@
     <!-- VR web -->
     <div class="item text-center item-video">
       <h4>VR-web Kuula-youtube</h4>
-      <div class="img-pro" onclick="abrirModal('video', 'URL_DEL_VIDEO_AQUI')">
-        <img src="IMG/Potena/3D potena@4x.png">
+      <div class="img-pro" onclick="abrirModal('video', 'https://kuula.co/share/LXBP3?logo=1&info=1&fs=1&vr=0&zoom=1&thumbs=1&inst=0')">
+        <img src="IMG/Potena/Kuula.avif">
         <span class="play-icon"><i class="fas fa-play-circle"></i></span>
       </div>
     </div>
@@ -160,19 +162,19 @@
     <!-- Maqueta real -->
     <div class="item text-center">
       <h4>Maqueta real (impresión 3D)</h4>
-      <div class="img-pro" onclick="abrirModal('galeria', ['IMG/Potena/3D potena@4x.png'])">
+      <div class="img-pro" onclick="abrirModal('galeria', [''])">
         <img src="IMG/Potena/3D potena@4x.png">
       </div>
     </div>
 
     <!-- VideoTurnaround -->
-    <div class="item text-center item-video">
-      <h4>VideoTurnaround 8-3D interactivo</h4>
-      <div class="img-pro" onclick="abrirModal('video', 'URL_DEL_VIDEO_AQUI')">
-        <img src="IMG/Potena/3D potena@4x.png">
-        <span class="play-icon"><i class="fas fa-play-circle"></i></span>
-      </div>
-    </div>
+<div class="item text-center item-video">
+  <h4>VideoTurnaround 8-3D interactivo</h4>
+  <div class="img-pro" onclick="abrirModal('spline', 'https://prod.spline.design/LT82nDQpCJtHqOLn/scene.splinecode')">
+    <img src="IMG/Potena/spline.design-AI-1.png">
+    <span class="play-icon"><i class="fas fa-cube"></i></span>
+  </div>
+</div>
 
     <!-- Mockup renders -->
     <div class="item text-center">
@@ -308,42 +310,49 @@
         </div>`;
 
     } else if (tipo === 'galeria') {
-      // src es un array de rutas
-      body.innerHTML = src.map(url =>
-        `<img src="${url}" class="modal-img mb-3">`
-      ).join('');
+      body.innerHTML = src.map(function(url) {
+        return '<img src="' + url + '" class="modal-img mb-3">';
+      }).join('');
+
+    } else if (tipo === 'spline') {
+      body.innerHTML = '<spline-viewer url="' + src + '" style="width:100%; height:70vh; display:block;"></spline-viewer>';
     }
 
-    const modal = new bootstrap.Modal(document.getElementById('imgModal'));
+    var modalEl = document.getElementById('imgModal');
+    var modal = new bootstrap.Modal(modalEl);
     modal.show();
   }
 
-  // Al cerrar el modal limpiar contenido (detiene videos)
-  document.getElementById('imgModal').addEventListener('hidden.bs.modal', () => {
-    document.getElementById('modalBody').innerHTML = '';
-  });
+  /* ===== LIMPIAR MODAL AL CERRAR ===== */
+  document.addEventListener('DOMContentLoaded', function() {
 
-  /* ===== SCROLL REVEAL ===== */
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+    document.getElementById('imgModal').addEventListener('hidden.bs.modal', function() {
+      document.getElementById('modalBody').innerHTML = '';
     });
-  }, { threshold: 0.1 });
 
-  function observarItems() {
-    document.querySelectorAll('.item:not(.observado)').forEach(el => {
-      el.classList.add('observado');
-      observer.observe(el);
+    /* ===== SCROLL REVEAL ===== */
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    function observarItems() {
+      document.querySelectorAll('.item:not(.observado)').forEach(function(el) {
+        el.classList.add('observado');
+        observer.observe(el);
+      });
+    }
+
+    observarItems();
+
+    document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function(tab) {
+      tab.addEventListener('shown.bs.tab', observarItems);
     });
-  }
 
-  document.addEventListener('DOMContentLoaded', observarItems);
-
-  document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
-    tab.addEventListener('shown.bs.tab', observarItems);
   });
 </script>
 
