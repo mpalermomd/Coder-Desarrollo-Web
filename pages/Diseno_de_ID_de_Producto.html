@@ -144,7 +144,12 @@
 <!-- RA Effects -->
 <div class="item text-center item-video">
   <h4>RA-Effects House-8thWall</h4>
-  <div class="img-pro" onclick="abrirModal('tiktok2', ['7656951183700937991', '7656948953690246407'])">
+  <div class="img-pro" onclick="abrirModal('mixto', [
+    {tipo: 'img', src: 'IMG/Potena/Potena_muestra.jpeg'},
+    {tipo: 'tiktok', src: '7656951183700937991'},
+    {tipo: 'img', src: 'IMG/Potena/Potena.jpeg'},
+    {tipo: 'tiktok', src: '7656948953690246407'}
+  ])">
     <img src="IMG/Potena/3D potena@4x.png">
     <span class="play-icon"><i class="fas fa-play-circle"></i></span>
   </div>
@@ -347,6 +352,25 @@
       script.async = true;
       body.appendChild(script);
 
+    } else if (tipo === 'mixto') {
+      let html = '<div class="d-flex flex-column align-items-center gap-4 py-2">';
+      src.forEach(function(item) {
+        if (item.tipo === 'img') {
+          html += `<img src="${item.src}" class="modal-img" style="max-width:100%;">`;
+        } else if (item.tipo === 'tiktok') {
+          html += `
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/${item.src}" data-video-id="${item.src}" style="max-width:605px; min-width:325px;">
+              <section></section>
+            </blockquote>`;
+        }
+      });
+      html += '</div>';
+      body.innerHTML = html;
+      const script = document.createElement('script');
+      script.src = 'https://www.tiktok.com/embed.js';
+      script.async = true;
+      body.appendChild(script);
+
     } else if (tipo === 'pdf') {
       body.innerHTML = `
         <div class="ratio" style="--bs-aspect-ratio: 75%;">
@@ -354,9 +378,10 @@
         </div>`;
 
     } else if (tipo === 'galeria') {
-      body.innerHTML = src.map(function(url) {
-        return '<img src="' + url + '" class="modal-img mb-3">';
-      }).join('');
+      body.innerHTML = `
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          ${src.map(url => `<img src="${url}" class="modal-img" style="max-width:48%;">`).join('')}
+        </div>`;
 
     } else if (tipo === 'spline') {
       body.innerHTML = '<spline-viewer url="' + src + '" style="width:100%; height:70vh; display:block;"></spline-viewer>';
@@ -398,7 +423,7 @@
     });
 
   });
-  
+
 </script>
 </body>
 </html>
