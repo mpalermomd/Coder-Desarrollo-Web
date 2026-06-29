@@ -130,8 +130,8 @@
     <!-- Packaging diseño -->
    <div class="item text-center">
       <h4>PDF Potena</h4>
-      <div class="img-pro" onclick="abrirModal('pdf', '../IMG/Potena/Potena_Presentacion_29-6.pdf')">
-        <iframe class="img-pro" src="IMG/Potena/3D potena@4x.png" title="PDF" allowfullscreen></iframe>
+      <div class="img-pro" onclick="abrirModal('pdf', 'IMG/Potena/Potena_Presentacion_29-6.pdf')">
+        <img src="IMG/Potena/3D potena@4x.png">
       </div>
     </div>
 
@@ -367,8 +367,8 @@
 
     } else if (tipo === 'pdf') {
       body.innerHTML = `
-        <div class="ratio" style="--bs-aspect-ratio: 75%;">
-          <iframe src="${src}" allowfullscreen></iframe>
+        <div style="height: 80vh;">
+          <iframe src="${src}" style="width:100%; height:100%; border:none;" allowfullscreen></iframe>
         </div>`;
 
     } else if (tipo === 'galeria') {
