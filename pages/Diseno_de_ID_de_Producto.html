@@ -85,6 +85,38 @@
         color: #fff;
         margin: 10px 0 0;
       }
+
+      /* Zoom para imágenes dentro del modal */
+      #modalBody img.modal-img {
+        cursor: zoom-in;
+        transition: max-width 0.3s ease, max-height 0.3s ease;
+      }
+
+      #modalBody img.modal-img.zoomed {
+        cursor: zoom-out;
+        max-width: 90vw !important;
+        max-height: 90vh !important;
+        width: auto;
+        height: auto;
+      }
+
+      .modal-body {
+        overflow: auto;
+        max-height: 90vh;
+      }
+
+      /* Por defecto el modal mantiene su tamaño normal (modal-xl) */
+
+      /* Solo cuando hay una imagen en zoom, el modal se adapta al contenido */
+      #imgModal.modal-zoom-activo .modal-dialog {
+        max-width: fit-content;
+        width: auto;
+      }
+
+      #imgModal.modal-zoom-activo .modal-content {
+        width: auto;
+        max-width: 95vw;
+      }
     </style>
 
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.98/build/spline-viewer.js"></script>
@@ -379,7 +411,7 @@
   }
 
   function abrirTikTokPopup(videoId) {
-    var url = 'https://www.tiktok.com/embed/v2/' + videoId;
+    var url = 'https://www.tiktok.com/@mariano.palermo.ina/video/' + videoId;
     window.open(url, 'tiktokPopup', 'width=400,height=750,resizable=yes,scrollbars=yes');
   }
 
@@ -387,6 +419,7 @@
 
     document.getElementById('imgModal').addEventListener('hidden.bs.modal', function() {
       document.getElementById('modalBody').innerHTML = '';
+      document.getElementById('imgModal').classList.remove('modal-zoom-activo');
     });
 
     var observer = new IntersectionObserver(function(entries) {
@@ -415,6 +448,15 @@
       var trigger = e.target.closest('.tiktok-trigger');
       if (trigger) {
         abrirTikTokPopup(trigger.dataset.id);
+      }
+
+      var zoomImg = e.target.closest('#modalBody img.modal-img');
+      if (zoomImg) {
+        zoomImg.classList.toggle('zoomed');
+        document.getElementById('imgModal').classList.toggle(
+          'modal-zoom-activo',
+          zoomImg.classList.contains('zoomed')
+        );
       }
     });
 
