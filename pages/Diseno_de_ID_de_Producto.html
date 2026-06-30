@@ -335,26 +335,26 @@ function abrirModal(tipo, src) {
       if (elemento.tipo === 'img') {
         html += '<img src="' + elemento.src + '" class="modal-img mb-4">';
       } else if (elemento.tipo === 'tiktok') {
-        html += '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@user/video/' + elemento.src + '" data-video-id="' + elemento.src + '" style="max-width:605px;min-width:325px;margin:20px auto;"><section></section></blockquote>';
+        html += '<div class="mb-4 tiktok-trigger" data-id="' + elemento.src + '" style="cursor:pointer; background:#111; border-radius:12px; padding:60px 20px; position:relative;">' +
+                  '<i class="fas fa-play-circle" style="font-size:3rem; color:#fff;"></i>' +
+                  '<p class="text-white mt-2 mb-0">Toca para reproducir</p>' +
+                '</div>';
       } else if (elemento.tipo === 'video') {
         html += '<div class="ratio ratio-16x9 mb-4"><iframe src="' + elemento.src + '" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>';
       }
     });
     body.innerHTML = html;
-
-    // Forzar a TikTok a procesar los nuevos blockquotes
-    var oldScript = document.getElementById('tiktok-embed-script');
-    if (oldScript) oldScript.remove();
-    var script = document.createElement('script');
-    script.id = 'tiktok-embed-script';
-    script.async = true;
-    script.src = 'https://www.tiktok.com/embed.js';
-    document.body.appendChild(script);
   }
 
   var modalEl = document.getElementById('imgModal');
   var modal = new bootstrap.Modal(modalEl);
   modal.show();
+}
+
+/* ===== POPUP TIKTOK ===== */
+function abrirTikTokPopup(videoId) {
+  var url = 'https://www.tiktok.com/embed/v2/' + videoId;
+  window.open(url, 'tiktokPopup', 'width=400,height=750,resizable=yes,scrollbars=yes');
 }
 
 /* ===== INICIALIZACIÓN ===== */
@@ -386,6 +386,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function(tab) {
     tab.addEventListener('shown.bs.tab', observarItems);
+  });
+
+  /* Listener delegado para triggers de TikTok dentro del modal */
+  document.addEventListener('click', function(e) {
+    var trigger = e.target.closest('.tiktok-trigger');
+    if (trigger) {
+      abrirTikTokPopup(trigger.dataset.id);
+    }
   });
 
 });
