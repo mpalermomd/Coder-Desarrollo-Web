@@ -308,95 +308,125 @@
 
 <script>
   /* ===== MODAL ===== */
-function abrirModal(tipo, src) {
-  const body = document.getElementById('modalBody');
-  body.innerHTML = '';
+  function abrirModal(tipo, src) {
+    const body = document.getElementById('modalBody');
+    body.innerHTML = '';
 
-  if (tipo === 'img') {
-    body.innerHTML = '<img src="' + src + '" class="modal-img">';
+    if (tipo === 'img') {
+      body.innerHTML = `<img src="${src}" class="modal-img">`;
 
-  } else if (tipo === 'video') {
-    body.innerHTML = '<div class="ratio ratio-16x9"><iframe src="' + src + '" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>';
+    } else if (tipo === 'video') {
+      body.innerHTML = `
+        <div class="ratio ratio-16x9 ">
+          <iframe src="${src}" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+        </div>`;
 
-  } else if (tipo === 'pdf') {
-    body.innerHTML = '<div class="ratio" style="--bs-aspect-ratio: 75%;"><iframe src="' + src + '" allowfullscreen></iframe></div>';
+    } else if (tipo === 'mp4') {
+      body.innerHTML = `
+        <div class="ratio ratio-16x9">
+          <video controls autoplay style="width:100%; height:100%;">
+            <source src="${src}" type="video/mp4">
+          </video>
+        </div>`;
 
-  } else if (tipo === 'galeria') {
-    body.innerHTML = src.map(function(url) {
-      return '<img src="' + url + '" class="modal-img mb-3">';
-    }).join('');
+    } else if (tipo === 'tiktok') {
+      body.innerHTML = `
+        <div class="d-flex justify-content-center">
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/${src}" data-video-id="${src}" style="max-width:605px; min-width:325px;">
+            <section></section>
+          </blockquote>
+        </div>`;
+      const script = document.createElement('script');
+      script.src = 'https://www.tiktok.com/embed.js';
+      script.async = true;
+      body.appendChild(script);
 
-  } else if (tipo === 'spline') {
-    body.innerHTML = '<spline-viewer url="' + src + '" style="width:100%; height:70vh; display:block;"></spline-viewer>';
+    } else if (tipo === 'tiktok2') {
+      body.innerHTML = `
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <blockquote class="tiktok-embed" cite="<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/7656951183700937991" data-video-id="7656951183700937991" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@mariano.palermo.ina" href="https://www.tiktok.com/@mariano.palermo.ina?refer=embed">@mariano.palermo.ina</a> <p></p> <a target="_blank" title="♬ оригинальный звук - astrospaceq" href="https://www.tiktok.com/music/оригинальный-звук-7386039364818209537?refer=embed">♬ оригинальный звук - astrospaceq</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>" data-video-id="${src[0]}" style="max-width:325px; min-width:280px;">
+            <section></section>
+          </blockquote>
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/" data-video-id="${src[1]}" style="max-width:325px; min-width:280px;">
+            <section></section>
+          </blockquote>
+        </div>`;
+      const script = document.createElement('script');
+      script.src = 'https://www.tiktok.com/embed.js';
+      script.async = true;
+      body.appendChild(script);
 
-  } else if (tipo === 'mixto') {
-    var html = '';
-    src.forEach(function(elemento) {
-      if (elemento.tipo === 'img') {
-        html += '<img src="' + elemento.src + '" class="modal-img mb-4">';
-      } else if (elemento.tipo === 'tiktok') {
-        html += '<div class="mb-4 tiktok-trigger" data-id="' + elemento.src + '" style="cursor:pointer; background:#111; border-radius:12px; padding:60px 20px; position:relative;">' +
-                  '<i class="fas fa-play-circle" style="font-size:3rem; color:#fff;"></i>' +
-                  '<p class="text-white mt-2 mb-0">Toca para reproducir</p>' +
-                '</div>';
-      } else if (elemento.tipo === 'video') {
-        html += '<div class="ratio ratio-16x9 mb-4"><iframe src="' + elemento.src + '" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>';
-      }
-    });
-    body.innerHTML = html;
-  }
+    } else if (tipo === 'mixto') {
+      let html = '<div class="d-flex flex-column align-items-center gap-4 py-2">';
+      src.forEach(function(item) {
+        if (item.tipo === 'img') {
+          html += `<img src="${item.src}" class="modal-img" style="max-width:100%;">`;
+        } else if (item.tipo === 'tiktok') {
+          html += `
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/${item.src}" data-video-id="${item.src}" style="max-width:605px; min-width:325px;">
+              <section></section>
+            </blockquote>`;
+        }
+      });
+      html += '</div>';
+      body.innerHTML = html;
+      const script = document.createElement('script');
+      script.src = 'https://www.tiktok.com/embed.js';
+      script.async = true;
+      body.appendChild(script);
 
-  var modalEl = document.getElementById('imgModal');
-  var modal = new bootstrap.Modal(modalEl);
-  modal.show();
-}
+    } else if (tipo === 'pdf') {
+      body.innerHTML = `
+        <div style="height: 80vh;">
+          <iframe src="${src}" style="width:100%; height:100%; border:none;" allowfullscreen></iframe>
+        </div>`;
 
-/* ===== POPUP TIKTOK ===== */
-function abrirTikTokPopup(videoId) {
-  var url = 'https://www.tiktok.com/@mariano.palermo.ina/video/7656951183700937991?embed_source=121374463%2C121468991%2C121439635%2C121749182%2C121433650%2C121404359%2C121497414%2C122349556%2C122221973%2C122122240%2C121351166%2C121811500%2C121960941%2C122122244%2C122122243%2C122122242%2C121487028%2C122258714%2C121331973%2C120811592%2C120810756%2C121885509%3Bnull%3Bembed_comment_button&refer=embed&referer_url=mpalermomd.vercel.app%2F&referer_video_id=7656951183700937991<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/7656951183700937991" data-video-id="7656951183700937991" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@mariano.palermo.ina" href="https://www.tiktok.com/@mariano.palermo.ina?refer=embed">@mariano.palermo.ina</a> <p></p> <a target="_blank" title="♬ оригинальный звук - astrospaceq" href="https://www.tiktok.com/music/оригинальный-звук-7386039364818209537?refer=embed">♬ оригинальный звук - astrospaceq</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>' + videoId;
-  window.open(url, 'tiktokPopup', 'width=400,height=750,resizable=yes,scrollbars=yes');
-}
+    } else if (tipo === 'galeria') {
+      body.innerHTML = `
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          ${src.map(url => `<img src="${url}" class="modal-img" style="max-width:48%;">`).join('')}
+        </div>`;
 
-/* ===== INICIALIZACIÓN ===== */
-document.addEventListener('DOMContentLoaded', function() {
-
-  /* Limpiar modal al cerrar */
-  document.getElementById('imgModal').addEventListener('hidden.bs.modal', function() {
-    document.getElementById('modalBody').innerHTML = '';
-  });
-
-  /* Scroll reveal */
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  function observarItems() {
-    document.querySelectorAll('.item:not(.observado)').forEach(function(el) {
-      el.classList.add('observado');
-      observer.observe(el);
-    });
-  }
-
-  observarItems();
-
-  document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function(tab) {
-    tab.addEventListener('shown.bs.tab', observarItems);
-  });
-
-  /* Listener delegado para triggers de TikTok dentro del modal */
-  document.addEventListener('click', function(e) {
-    var trigger = e.target.closest('.tiktok-trigger');
-    if (trigger) {
-      abrirTikTokPopup(trigger.dataset.id);
+    } else if (tipo === 'spline') {
+      body.innerHTML = '<spline-viewer url="' + src + '" style="width:100%; height:70vh; display:block;"></spline-viewer>';
     }
-  });
 
-});
+    var modalEl = document.getElementById('imgModal');
+    var modal = new bootstrap.Modal(modalEl);
+    modal.show();
+  }
+
+  /* ===== LIMPIAR MODAL AL CERRAR ===== */
+  document.addEventListener('DOMContentLoaded', function() {
+
+    document.getElementById('imgModal').addEventListener('hidden.bs.modal', function() {
+      document.getElementById('modalBody').innerHTML = '';
+    });
+
+    /* ===== SCROLL REVEAL ===== */
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    function observarItems() {
+      document.querySelectorAll('.item:not(.observado)').forEach(function(el) {
+        el.classList.add('observado');
+        observer.observe(el);
+      });
+    }
+
+    observarItems();
+
+    document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function(tab) {
+      tab.addEventListener('shown.bs.tab', observarItems);
+    });
+
+  });
 
 </script>
 </body>
