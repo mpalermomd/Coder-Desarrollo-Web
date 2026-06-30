@@ -344,10 +344,10 @@
     } else if (tipo === 'tiktok2') {
       body.innerHTML = `
         <div class="d-flex flex-wrap justify-content-center gap-3">
-          <blockquote class="tiktok-embed" cite="<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/7656951183700937991" data-video-id="7656951183700937991" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@mariano.palermo.ina" href="https://www.tiktok.com/@mariano.palermo.ina?refer=embed">@mariano.palermo.ina</a> <p></p> <a target="_blank" title="♬ оригинальный звук - astrospaceq" href="https://www.tiktok.com/music/оригинальный-звук-7386039364818209537?refer=embed">♬ оригинальный звук - astrospaceq</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>" data-video-id="${src[0]}" style="max-width:325px; min-width:280px;">
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/${src[0]}" data-video-id="${src[0]}" style="max-width:325px; min-width:280px;">
             <section></section>
           </blockquote>
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/" data-video-id="${src[1]}" style="max-width:325px; min-width:280px;">
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/${src[1]}" data-video-id="${src[1]}" style="max-width:325px; min-width:280px;">
             <section></section>
           </blockquote>
         </div>`;
