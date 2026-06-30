@@ -308,125 +308,87 @@
 
 <script>
   /* ===== MODAL ===== */
-  function abrirModal(tipo, src) {
-    const body = document.getElementById('modalBody');
-    body.innerHTML = '';
+function abrirModal(tipo, src) {
+  const body = document.getElementById('modalBody');
+  body.innerHTML = '';
 
-    if (tipo === 'img') {
-      body.innerHTML = `<img src="${src}" class="modal-img">`;
+  if (tipo === 'img') {
+    body.innerHTML = '<img src="' + src + '" class="modal-img">';
 
-    } else if (tipo === 'video') {
-      body.innerHTML = `
-        <div class="ratio ratio-16x9">
-          <iframe src="${src}" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-        </div>`;
+  } else if (tipo === 'video') {
+    body.innerHTML = '<div class="ratio ratio-16x9"><iframe src="' + src + '" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>';
 
-    } else if (tipo === 'mp4') {
-      body.innerHTML = `
-        <div class="ratio ratio-16x9">
-          <video controls autoplay style="width:100%; height:100%;">
-            <source src="${src}" type="video/mp4">
-          </video>
-        </div>`;
+  } else if (tipo === 'pdf') {
+    body.innerHTML = '<div class="ratio" style="--bs-aspect-ratio: 75%;"><iframe src="' + src + '" allowfullscreen></iframe></div>';
 
-    } else if (tipo === 'tiktok') {
-      body.innerHTML = `
-        <div class="d-flex justify-content-center">
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/${src}" data-video-id="${src}" style="max-width:605px; min-width:325px;">
-            <section></section>
-          </blockquote>
-        </div>`;
-      const script = document.createElement('script');
-      script.src = 'https://www.tiktok.com/embed.js';
-      script.async = true;
-      body.appendChild(script);
+  } else if (tipo === 'galeria') {
+    body.innerHTML = src.map(function(url) {
+      return '<img src="' + url + '" class="modal-img mb-3">';
+    }).join('');
 
-    } else if (tipo === 'tiktok2') {
-      body.innerHTML = `
-        <div class="d-flex flex-wrap justify-content-center gap-3">
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/${src[0]}" data-video-id="${src[0]}" style="max-width:325px; min-width:280px;">
-            <section></section>
-          </blockquote>
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/${src[1]}" data-video-id="${src[1]}" style="max-width:325px; min-width:280px;">
-            <section></section>
-          </blockquote>
-        </div>`;
-      const script = document.createElement('script');
-      script.src = 'https://www.tiktok.com/embed.js';
-      script.async = true;
-      body.appendChild(script);
+  } else if (tipo === 'spline') {
+    body.innerHTML = '<spline-viewer url="' + src + '" style="width:100%; height:70vh; display:block;"></spline-viewer>';
 
-    } else if (tipo === 'mixto') {
-      let html = '<div class="d-flex flex-column align-items-center gap-4 py-2">';
-      src.forEach(function(item) {
-        if (item.tipo === 'img') {
-          html += `<img src="${item.src}" class="modal-img" style="max-width:100%;">`;
-        } else if (item.tipo === 'tiktok') {
-          html += `
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/${item.src}" data-video-id="${item.src}" style="max-width:605px; min-width:325px;">
-              <section></section>
-            </blockquote>`;
-        }
-      });
-      html += '</div>';
-      body.innerHTML = html;
-      const script = document.createElement('script');
-      script.src = 'https://www.tiktok.com/embed.js';
-      script.async = true;
-      body.appendChild(script);
+  } else if (tipo === 'mixto') {
+    var html = '';
+    src.forEach(function(elemento) {
+      if (elemento.tipo === 'img') {
+        html += '<img src="' + elemento.src + '" class="modal-img mb-4">';
+      } else if (elemento.tipo === 'tiktok') {
+        html += '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@user/video/' + elemento.src + '" data-video-id="' + elemento.src + '" style="max-width:605px;min-width:325px;margin:20px auto;"><section></section></blockquote>';
+      } else if (elemento.tipo === 'video') {
+        html += '<div class="ratio ratio-16x9 mb-4"><iframe src="' + elemento.src + '" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>';
+      }
+    });
+    body.innerHTML = html;
 
-    } else if (tipo === 'pdf') {
-      body.innerHTML = `
-        <div style="height: 80vh;">
-          <iframe src="${src}" style="width:100%; height:100%; border:none;" allowfullscreen></iframe>
-        </div>`;
-
-    } else if (tipo === 'galeria') {
-      body.innerHTML = `
-        <div class="d-flex flex-wrap justify-content-center gap-3">
-          ${src.map(url => `<img src="${url}" class="modal-img" style="max-width:48%;">`).join('')}
-        </div>`;
-
-    } else if (tipo === 'spline') {
-      body.innerHTML = '<spline-viewer url="' + src + '" style="width:100%; height:70vh; display:block;"></spline-viewer>';
-    }
-
-    var modalEl = document.getElementById('imgModal');
-    var modal = new bootstrap.Modal(modalEl);
-    modal.show();
+    // Forzar a TikTok a procesar los nuevos blockquotes
+    var oldScript = document.getElementById('tiktok-embed-script');
+    if (oldScript) oldScript.remove();
+    var script = document.createElement('script');
+    script.id = 'tiktok-embed-script';
+    script.async = true;
+    script.src = 'https://www.tiktok.com/embed.js';
+    document.body.appendChild(script);
   }
 
-  /* ===== LIMPIAR MODAL AL CERRAR ===== */
-  document.addEventListener('DOMContentLoaded', function() {
+  var modalEl = document.getElementById('imgModal');
+  var modal = new bootstrap.Modal(modalEl);
+  modal.show();
+}
 
-    document.getElementById('imgModal').addEventListener('hidden.bs.modal', function() {
-      document.getElementById('modalBody').innerHTML = '';
-    });
+/* ===== INICIALIZACIÓN ===== */
+document.addEventListener('DOMContentLoaded', function() {
 
-    /* ===== SCROLL REVEAL ===== */
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    function observarItems() {
-      document.querySelectorAll('.item:not(.observado)').forEach(function(el) {
-        el.classList.add('observado');
-        observer.observe(el);
-      });
-    }
-
-    observarItems();
-
-    document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function(tab) {
-      tab.addEventListener('shown.bs.tab', observarItems);
-    });
-
+  /* Limpiar modal al cerrar */
+  document.getElementById('imgModal').addEventListener('hidden.bs.modal', function() {
+    document.getElementById('modalBody').innerHTML = '';
   });
+
+  /* Scroll reveal */
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  function observarItems() {
+    document.querySelectorAll('.item:not(.observado)').forEach(function(el) {
+      el.classList.add('observado');
+      observer.observe(el);
+    });
+  }
+
+  observarItems();
+
+  document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function(tab) {
+    tab.addEventListener('shown.bs.tab', observarItems);
+  });
+
+});
 
 </script>
 </body>
