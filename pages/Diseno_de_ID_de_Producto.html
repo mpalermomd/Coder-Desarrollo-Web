@@ -11,7 +11,6 @@
     <link rel="icon" href="../IMG/Logo.png">
 
     <style>
-      /* ===== TIPOGRAFÍAS ===== */
       h1, h2, h3, h4, h5, h6,
       .nav-tabs .nav-link,
       .section-content h2,
@@ -23,7 +22,6 @@
         font-family: Calibri, 'Segoe UI', sans-serif !important;
       }
 
-      /* ===== SCROLL REVEAL ===== */
       .tab-pane.show .item,
       .tab-pane.active .item {
         opacity: 0;
@@ -36,7 +34,6 @@
         transform: translateY(0) !important;
       }
 
-      /* ===== MODAL ===== */
       .modal-img {
         max-width: 95vw;
         max-height: 80vh;
@@ -49,7 +46,6 @@
         filter: invert(1);
       }
 
-      /* Ícono de play sobre items de video */
       .item-video .img-pro {
         position: relative;
       }
@@ -64,6 +60,31 @@
         pointer-events: none;
         text-shadow: 0 2px 8px rgba(0,0,0,0.5);
       }
+
+      .tiktok-trigger {
+        cursor: pointer;
+        background: #111;
+        border-radius: 12px;
+        padding: 60px 20px;
+        text-align: center;
+        width: 100%;
+        max-width: 605px;
+        transition: background 0.3s ease;
+      }
+
+      .tiktok-trigger:hover {
+        background: #1f1f1f;
+      }
+
+      .tiktok-trigger i {
+        font-size: 3rem;
+        color: #fff;
+      }
+
+      .tiktok-trigger p {
+        color: #fff;
+        margin: 10px 0 0;
+      }
     </style>
 
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.98/build/spline-viewer.js"></script>
@@ -71,16 +92,13 @@
 
 <body>
 
-<!-- MODAL MEJORADO -->
 <div class="modal fade" id="imgModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content bg-dark">
       <div class="modal-header border-0 pb-0">
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body text-center p-2" id="modalBody">
-        <!-- contenido dinámico -->
-      </div>
+      <div class="modal-body text-center p-2" id="modalBody"></div>
     </div>
   </div>
 </div>
@@ -103,7 +121,6 @@
 
 <div class="container">
 
-<!-- TABS -->
 <ul class="nav nav-tabs mt-4">
   <li class="nav-item">
     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab2">Poténa</button>
@@ -115,7 +132,6 @@
 
 <div class="tab-content">
 
-<!-- ================= TAB POTÉNA ================= -->
 <div class="tab-pane fade show active" id="tab2">
 
   <div class="section-content mx-3 mt-3">
@@ -125,31 +141,26 @@
 
   <div class="container my-5 galeria-pro">
 
-   
-
-    <!-- Packaging diseño -->
-   <div class="item text-center">
+    <div class="item text-center">
       <h4>PDF Potena</h4>
       <div class="img-pro" onclick="abrirModal('pdf', 'IMG/Potena/Potena_Presentacion_29-6.pdf')">
         <img src="IMG/Potena/3D potena@4x.png">
       </div>
     </div>
 
-<!-- RA Effects -->
-<div class="item text-center item-video">
-  <h4>RA-Effects House-8thWall</h4>
-  <div class="img-pro" onclick="abrirModal('mixto', [
-    {tipo: 'img', src: 'IMG/Potena/Potena_muestra.jpeg'},
-    {tipo: 'tiktok', src: '7656951183700937991'},
-    {tipo: 'img', src: 'IMG/Potena/Potena.jpeg'},
-    {tipo: 'tiktok', src: '7656948953690246407'}
-  ])">
-    <img src="IMG/Potena/3D potena@4x.png">
-    <span class="play-icon"><i class="fas fa-play-circle"></i></span>
-  </div>
-</div>
+    <div class="item text-center item-video">
+      <h4>RA-Effects House-8thWall</h4>
+      <div class="img-pro" onclick="abrirModal('mixto', [
+        {tipo: 'img', src: 'IMG/Potena/Potena_muestra.jpeg'},
+        {tipo: 'tiktok', src: '7656951183700937991'},
+        {tipo: 'img', src: 'IMG/Potena/Potena.jpeg'},
+        {tipo: 'tiktok', src: '7656948953690246407'}
+      ])">
+        <img src="IMG/Potena/3D potena@4x.png">
+        <span class="play-icon"><i class="fas fa-play-circle"></i></span>
+      </div>
+    </div>
 
-    <!-- VR web -->
     <div class="item text-center item-video">
       <h4>VR-web Kuula-youtube</h4>
       <div class="img-pro" onclick="abrirModal('video', 'https://kuula.co/share/LXBP3?logo=1&info=1&fs=1&vr=0&zoom=1&thumbs=1&inst=0')">
@@ -158,43 +169,39 @@
       </div>
     </div>
 
-    <!-- Maqueta real -->
-<div class="item text-center">
-  <h4>Maqueta real (impresión 3D)</h4>
-  <div class="img-pro" onclick="abrirModal('galeria', [
-    'IMG/Potena/Reales/1.png',
-    'IMG/Potena/Reales/2.jpg',
-    'IMG/Potena/Reales/3.png',
-    'IMG/Potena/Reales/4.png',
-    'IMG/Potena/Reales/5.png',
-    'IMG/Potena/Reales/6.png',
-    'IMG/Potena/Reales/7.png',
-    'IMG/Potena/Reales/8.png',
-    'IMG/Potena/Reales/9.png'
-  ])">
-    <img src="IMG/Potena/3D potena@4x.png">
-  </div>
-</div>
+    <div class="item text-center">
+      <h4>Maqueta real (impresión 3D)</h4>
+      <div class="img-pro" onclick="abrirModal('galeria', [
+        'IMG/Potena/Reales/1.png',
+        'IMG/Potena/Reales/2.jpg',
+        'IMG/Potena/Reales/3.png',
+        'IMG/Potena/Reales/4.png',
+        'IMG/Potena/Reales/5.png',
+        'IMG/Potena/Reales/6.png',
+        'IMG/Potena/Reales/7.png',
+        'IMG/Potena/Reales/8.png',
+        'IMG/Potena/Reales/9.png'
+      ])">
+        <img src="IMG/Potena/3D potena@4x.png">
+      </div>
+    </div>
 
-    <!-- VideoTurnaround -->
-<div class="item text-center item-video">
-  <h4>Spline interactivo</h4>
-  <div class="img-pro" onclick="abrirModal('spline', 'https://prod.spline.design/LT82nDQpCJtHqOLn/scene.splinecode')">
-    <img src="IMG/Potena/spline.design-AI-1.png">
-    <span class="play-icon"><i class="fas fa-cube"></i></span>
-  </div>
-</div>
+    <div class="item text-center item-video">
+      <h4>Spline interactivo</h4>
+      <div class="img-pro" onclick="abrirModal('spline', 'https://prod.spline.design/LT82nDQpCJtHqOLn/scene.splinecode')">
+        <img src="IMG/Potena/spline.design-AI-1.png">
+        <span class="play-icon"><i class="fas fa-cube"></i></span>
+      </div>
+    </div>
 
-  <!-- VideoTurnaround -->
-<div class="item text-center item-video">
-  <h4>VideoTurnaround 360° 3D</h4>
-  <div class="img-pro" onclick="abrirModal('mp4', 'VIDEO/Potena_360.mp4')">
-    <img src="IMG/Potena/YouTube-360-Degre.jpg">
-    <span class="play-icon"><i class="fas fa-play"></i></span>
-  </div>
-</div>
+    <div class="item text-center item-video">
+      <h4>VideoTurnaround 360° 3D</h4>
+      <div class="img-pro" onclick="abrirModal('mp4', 'VIDEO/Potena_360.mp4')">
+        <img src="IMG/Potena/YouTube-360-Degre.jpg">
+        <span class="play-icon"><i class="fas fa-play"></i></span>
+      </div>
+    </div>
 
-    <!-- Mockup renders -->
     <div class="item text-center">
       <h4>Mockup → renders</h4>
       <div class="img-pro" onclick="abrirModal('galeria', [
@@ -209,7 +216,6 @@
   </div>
 </div>
 
-<!-- ================= TAB PRINGLES ================= -->
 <div class="tab-pane fade" id="tab1">
 
   <div class="section-content mx-3 mt-3">
@@ -218,7 +224,6 @@
 
   <div class="container my-5 galeria-pro">
 
-    <!-- Video rotando lata -->
     <div class="item text-center item-video">
       <h4>Video rotando lata</h4>
       <div class="img-pro" onclick="abrirModal('video', 'https://www.youtube.com/embed/4J1aWlHoCyo?si=kEoYVqin5VXrOMKe')">
@@ -226,7 +231,6 @@
       </div>
     </div>
 
-    <!-- Render -->
     <div class="item text-center">
       <h4>Render</h4>
       <div class="img-pro" onclick="abrirModal('galeria', ['../IMG/Papas/untitl ed.png', '../IMG/Papas/u ntitl ed.png'])">
@@ -234,7 +238,6 @@
       </div>
     </div>
 
-    <!-- QR papas en la cara -->
     <div class="item text-center">
       <h4>QR papas en la cara</h4>
       <div class="img-pro" onclick="abrirModal('img', '../IMG/Papas/QR papas cara.png')">
@@ -242,7 +245,6 @@
       </div>
     </div>
 
-    <!-- QR papas 360 -->
     <div class="item text-center">
       <h4>QR papas 360</h4>
       <div class="img-pro" onclick="abrirModal('img', '../IMG/Papas/QR papas piso.png')">
@@ -250,40 +252,30 @@
       </div>
     </div>
 
-    <!-- TikTok 1 -->
-    <div class="item text-center">
+    <div class="item text-center item-video">
       <h4>Video TikTok</h4>
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@user80306348393195/video/7637338510977928469" data-video-id="7637338510977928469" style="max-width: 605px;min-width: 325px;">
-        <section>
-          <a target="_blank" title="@user80306348393195" href="https://www.tiktok.com/@user80306348393195?refer=embed">@user80306348393195</a>
-          <a target="_blank" title="♬ เสียงต้นฉบับ - MAY PINK" href="https://www.tiktok.com/music/เสียงต้นฉบับ-MAY-PINK-7561398092084366101?refer=embed">♬ เสียงต้นฉบับ - MAY PINK</a>
-        </section>
-      </blockquote>
+      <div class="img-pro" onclick="abrirModal('tiktok', '7637338510977928469')">
+        <img src="IMG/Potena/3D potena@4x.png">
+        <span class="play-icon"><i class="fas fa-play-circle"></i></span>
+      </div>
     </div>
 
-    <!-- TikTok 2 -->
-    <div class="item text-center">
+    <div class="item text-center item-video">
       <h4>Video TikTok</h4>
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@johanaayala528/video/7637338482964466962" data-video-id="7637338482964466962" style="max-width: 605px;min-width: 325px;">
-        <section>
-          <a target="_blank" title="@johanaayala528" href="https://www.tiktok.com/@johanaayala528?refer=embed">@johanaayala528</a>
-          <a target="_blank" title="♬ sonido original - valery✅" href="https://www.tiktok.com/music/sonido-original-7614972882338941697?refer=embed">♬ sonido original - valery✅</a>
-        </section>
-      </blockquote>
+      <div class="img-pro" onclick="abrirModal('tiktok', '7637338482964466962')">
+        <img src="IMG/Potena/3D potena@4x.png">
+        <span class="play-icon"><i class="fas fa-play-circle"></i></span>
+      </div>
     </div>
 
-    <!-- TikTok 3 -->
-    <div class="item text-center">
+    <div class="item text-center item-video">
       <h4>Video TikTok</h4>
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/7637887637000408328" data-video-id="7637887637000408328" style="max-width: 605px;min-width: 325px;">
-        <section>
-          <a target="_blank" title="@mariano.palermo.ina" href="https://www.tiktok.com/@mariano.palermo.ina?refer=embed">@mariano.palermo.ina</a>
-          <a target="_blank" title="♬ original sound - gentle motif" href="https://www.tiktok.com/music/original-sound-7593689759672339218?refer=embed">♬ original sound - gentle motif</a>
-        </section>
-      </blockquote>
+      <div class="img-pro" onclick="abrirModal('tiktok', '7637887637000408328')">
+        <img src="IMG/Potena/3D potena@4x.png">
+        <span class="play-icon"><i class="fas fa-play-circle"></i></span>
+      </div>
     </div>
 
-    <!-- Pringles 360 VR -->
     <div class="item text-center">
       <h4>Pringles 360 VR</h4>
       <script src="https://static.kuula.io/embed.js" data-kuula="https://kuula.co/share/LvgvN?logo=1&info=1&fs=1&vr=0&zoom=1&thumbs=1&inst=es" data-width="100%" data-height="640px"></script>
@@ -292,8 +284,8 @@
   </div>
 </div>
 
-</div> <!-- cierre tab-content -->
-</div> <!-- cierre container -->
+</div>
+</div>
 
 <footer>
   <div class="social-icons">
@@ -304,10 +296,8 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script async src="https://www.tiktok.com/embed.js"></script>
 
 <script>
-  /* ===== MODAL ===== */
   function abrirModal(tipo, src) {
     const body = document.getElementById('modalBody');
     body.innerHTML = '';
@@ -332,29 +322,24 @@
     } else if (tipo === 'tiktok') {
       body.innerHTML = `
         <div class="d-flex justify-content-center">
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/${src}" data-video-id="${src}" style="max-width:605px; min-width:325px;">
-            <section></section>
-          </blockquote>
+          <div class="tiktok-trigger" data-id="${src}">
+            <i class="fas fa-play-circle"></i>
+            <p>Toca para ver en TikTok</p>
+          </div>
         </div>`;
-      const script = document.createElement('script');
-      script.src = 'https://www.tiktok.com/embed.js';
-      script.async = true;
-      body.appendChild(script);
 
     } else if (tipo === 'tiktok2') {
       body.innerHTML = `
         <div class="d-flex flex-wrap justify-content-center gap-3">
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/${src[0]}" data-video-id="${src[0]}" style="max-width:325px; min-width:280px;">
-            <section></section>
-          </blockquote>
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/${src[1]}" data-video-id="${src[1]}" style="max-width:325px; min-width:280px;">
-            <section></section>
-          </blockquote>
+          <div class="tiktok-trigger" data-id="${src[0]}">
+            <i class="fas fa-play-circle"></i>
+            <p>Toca para ver en TikTok</p>
+          </div>
+          <div class="tiktok-trigger" data-id="${src[1]}">
+            <i class="fas fa-play-circle"></i>
+            <p>Toca para ver en TikTok</p>
+          </div>
         </div>`;
-      const script = document.createElement('script');
-      script.src = 'https://www.tiktok.com/embed.js';
-      script.async = true;
-      body.appendChild(script);
 
     } else if (tipo === 'mixto') {
       let html = '<div class="d-flex flex-column align-items-center gap-4 py-2">';
@@ -363,17 +348,14 @@
           html += `<img src="${item.src}" class="modal-img" style="max-width:100%;">`;
         } else if (item.tipo === 'tiktok') {
           html += `
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@mariano.palermo.ina/video/${item.src}" data-video-id="${item.src}" style="max-width:605px; min-width:325px;">
-              <section></section>
-            </blockquote>`;
+            <div class="tiktok-trigger" data-id="${item.src}">
+              <i class="fas fa-play-circle"></i>
+              <p>Toca para ver en TikTok</p>
+            </div>`;
         }
       });
       html += '</div>';
       body.innerHTML = html;
-      const script = document.createElement('script');
-      script.src = 'https://www.tiktok.com/embed.js';
-      script.async = true;
-      body.appendChild(script);
 
     } else if (tipo === 'pdf') {
       body.innerHTML = `
@@ -396,14 +378,17 @@
     modal.show();
   }
 
-  /* ===== LIMPIAR MODAL AL CERRAR ===== */
+  function abrirTikTokPopup(videoId) {
+    var url = 'https://www.tiktok.com/embed/v2/' + videoId;
+    window.open(url, 'tiktokPopup', 'width=400,height=750,resizable=yes,scrollbars=yes');
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('imgModal').addEventListener('hidden.bs.modal', function() {
       document.getElementById('modalBody').innerHTML = '';
     });
 
-    /* ===== SCROLL REVEAL ===== */
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
@@ -426,8 +411,14 @@
       tab.addEventListener('shown.bs.tab', observarItems);
     });
 
-  });
+    document.addEventListener('click', function(e) {
+      var trigger = e.target.closest('.tiktok-trigger');
+      if (trigger) {
+        abrirTikTokPopup(trigger.dataset.id);
+      }
+    });
 
+  });
 </script>
 </body>
 </html>
